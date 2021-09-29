@@ -20,7 +20,7 @@ body{
   vertical-align: middle;
 }
 
-#logobox
+.logobox
 {
   font-family: 'Roboto Slab', serif;
   box-sizing: border-box;
@@ -85,7 +85,7 @@ body{
 
 #introtextbox
 {
-  margin: -30 15 0 0;
+  margin: -30 15 0 15;
   display: inline-block;
   vertical-align: top;
 }
@@ -145,4 +145,9 @@ body{
   height: fit-content;
   font-family: 'Roboto', sans-serif;;
   font-size: 12px;
+}
+
+.curriculumtable
+{
+  margin: 0 250;
 }
