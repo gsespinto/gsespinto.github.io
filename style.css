@@ -132,6 +132,7 @@ body{
   padding: 0 20;
   text-align: center;
   vertical-align: middle;
+  cursor:pointer;
 }
 
 .stylized-input{
