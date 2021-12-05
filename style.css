@@ -52,8 +52,7 @@ body{
   text-align: center;
   overflow-x:scroll;
   overflow-y: hidden; 
-  max-height: min-content;
-  max-height: fit-content;
+  height: fit-content;
   padding: 50px 0;
 }
 
