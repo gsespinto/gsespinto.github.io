@@ -52,6 +52,18 @@ body{
   text-align: center;
   overflow-x:scroll;
   overflow-y: hidden; 
+  max-height: min-content;
+  padding: 50px 0;
+}
+
+.projectmedia
+{
+  width: auto;
+  height: 650px;
+  margin: 0 auto;
+  text-align: center;
+  overflow-x:scroll;
+  overflow-y: hidden; 
   height: fit-content;
   padding: 50px 0;
 }
