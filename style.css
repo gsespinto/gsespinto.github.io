@@ -47,19 +47,24 @@ body{
 .homebox
 {
   width: auto;
-  height: 650px;
+  height:fit-content;
+  max-height: -moz-max-content;
   margin: 0 auto;
   text-align: center;
   overflow-x:scroll;
-  overflow-y: hidden; 
-  max-height: min-content;
+  overflow-y: hidden;
   padding: 50px 0;
+}
+
+@-moz-document url-prefix() {
+  .homebox {
+    height: 650px;
+  }
 }
 
 .projectmedia
 {
   width: auto;
-  height: 650px;
   margin: 0 auto;
   text-align: center;
   overflow-x:scroll;
