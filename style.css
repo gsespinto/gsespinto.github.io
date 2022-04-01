@@ -47,7 +47,7 @@ body{
 .homebox
 {
   width: auto;
-  height:fit-content;
+  height: fit-content;
   max-height: -moz-max-content;
   margin: 0 auto;
   text-align: center;
