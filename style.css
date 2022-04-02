@@ -71,6 +71,9 @@ body{
   overflow-y: hidden; 
   height: fit-content;
   padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .introcontent
@@ -119,7 +122,7 @@ body{
 {
   text-align: justify;
   font-size: 20px;
-  padding: 15px;
+  padding: 0px;
   font-family: 'Roboto', sans-serif;;
 }
 
@@ -164,4 +167,15 @@ body{
   height: fit-content;
   font-family: 'Roboto', sans-serif;;
   font-size: 12px;
+}
+
+.projectimage{
+  width: 1000px; 
+  height: auto; 
+  padding-top: 50px;
+}
+
+.projectvideo{
+  width: 1000px; 
+  height: 562.5px;
 }
