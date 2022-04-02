@@ -129,8 +129,15 @@ body{
 {
   text-align: justify;
   font-size: 20px;
-  padding: 15px 100px;
   font-family: 'Roboto', sans-serif;;
+}
+
+.projecttext
+{
+  width: 42.5%;
+  height: 100%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .introtext{
@@ -182,3 +189,12 @@ body{
   font-family: 'Roboto', sans-serif;;
   font-size: 12px;
 }
+
+@media screen and (min-width: 1366px) {
+  .projectimage{ width:1000px; }
+  .projectvideo{ width: 1000px; height: 562.5px; }
+  .introcontent{ width: 57.5%; }
+  .projecttext { width: 42.5%; }
+}
+
+
