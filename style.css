@@ -76,6 +76,17 @@ body{
   align-items: center;
 }
 
+.projectimage{
+  width: 800px; 
+  height: auto; 
+  padding-top: 50px;
+}
+
+.projectvideo{
+  width: 800px; 
+  height: 450px;
+}
+
 .introcontent
 {
   width: 1000px;
@@ -167,15 +178,4 @@ body{
   height: fit-content;
   font-family: 'Roboto', sans-serif;;
   font-size: 12px;
-}
-
-.projectimage{
-  width: 800px; 
-  height: auto; 
-  padding-top: 50px;
-}
-
-.projectvideo{
-  width: 800px; 
-  height: 450px;
 }
