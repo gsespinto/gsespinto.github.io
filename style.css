@@ -151,10 +151,19 @@ body{
   vertical-align: top;
 }
 
+.scrolling-wrapper {
+  white-space:nowrap;
+}
+
+.card{
+  display: inline-block;
+}
+
 .previewimg
 {
-  height: 575px;
-  padding: 3 3px;
+  height: 650px;
+  padding-left: 22px;
+  padding-right: 22px;
 }
 
 .filesdiv
