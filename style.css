@@ -63,7 +63,7 @@ body{
 }
 
 .title
-{  
+{
   font-family: 'Roboto Slab', serif;
   text-align: center;
   font-size: 40px;
@@ -98,7 +98,7 @@ body{
   margin: 0 auto;
   text-align: center;
   overflow-x:auto;
-  overflow-y: hidden; 
+  overflow-y: hidden;
   height: fit-content;
   padding: 50px 0;
   display: flex;
@@ -107,13 +107,13 @@ body{
 }
 
 .projectimage{
-  width: 900px; 
-  height: auto; 
+  width: 900px;
+  height: auto;
   padding-top: 50px;
 }
 
 .projectvideo{
-  width: 900px; 
+  width: 900px;
   height: 506.25px;
 }
 
@@ -209,5 +209,3 @@ body{
   .introcontent{ width: 57.5%; }
   .projecttext { width: 1000px; }
 }
-
-
