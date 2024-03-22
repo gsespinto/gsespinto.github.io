@@ -1,0 +1,293 @@
+@font-face {
+    font-family: 'sushi-cat';
+    src: url('Resources/sushi-cat.otf') format('opentype');
+}
+
+body {
+    font-family: 'sushi-cat', Arial, sans-serif;
+    font-size: 30px;
+    background-image: url("Resources/background.png");
+    background-size:contain;
+    margin: 0;
+    padding: 0;
+    color: #76837f;
+}
+
+.container {
+    width: 80%;
+    margin: 0 10%;
+}
+
+header {
+    background-color: #f7a194;
+    color: white;
+    text-align: center;
+    align-items: center;
+    padding: 20px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+footer{
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    background-color: #d8e3dd;
+    color: white;
+    padding: 10px 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+    font-size: 70px;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+section {
+    padding: 20px 0;
+}
+
+#about {
+    margin-top: 100px;
+}
+
+.section {
+    text-align: center;
+}
+
+.section h2 {
+    color: #f7a194;
+    font-size: 50px;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.section {
+    animation: fadeInUp 1s;
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+ul {
+    list-style-type: disc;
+    list-style-position: inside;
+    /* Bullet points inside list items */
+    padding: 0;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+.slideshow-container{
+    display: flex;
+    width: 100%;
+    height: 500px;
+    align-items: center;
+}
+
+.mySlides {
+    display:block;
+    width: 100%;
+    height: 100%;
+    margin: -20px 0;
+}
+
+.screenshot-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.screenshot {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.video {
+    height: 100%;
+    width: 100%;
+}
+
+
+/* Next & previous buttons */
+
+.prev,
+.next {
+    cursor: pointer;
+    position: relative;
+    width: auto;
+    height: fit-content;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+
+/* On hover, add a black background color with a little bit see-through */
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* The dots/bullets/indicators */
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #a1b0ab;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+    background-color: #76837f;
+}
+
+
+/* Fading animation */
+
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 70%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+
+label{
+    color: #f7a194;
+}
+
+
+input[type=text] {
+	appearance: none;
+	border: none;
+	outline: none;
+	border-bottom: .2em solid #f7a194;
+	background: rgba(#f7a194, .2);
+	border-radius: .2em .2em 0 0;
+	padding: .4em;
+	color: #f7a194;
+}
+
+input[type="submit"]{
+    margin-top: 20px;
+	appearance: none;
+    text-align: center;
+    font-family: 'sushi-cat';
+    font-size: 20px;
+	border: .2em solid #f7a194;
+	background: #fff;
+	padding: .85em 1.5em;
+	color: #f7a194;
+	border-radius: 2em;
+	transition: 1s;
+	&:hover, &:focus, &:active {
+		background: #f7a194;
+		color: #fff;
+	}
+}
+
+input[type=checkbox] {
+	appearance: none;
+  background-color: #fff;
+  margin: 0;
+	font: inherit;
+  color: currentColor;
+  width: 1em;
+  height: 1em;
+  border: 0.15em solid #f7a194;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+	display: grid;
+  place-content: center;
+	&::before {
+		content: "";
+		width: 0.5em;
+		height: 0.5em;
+		transform: scale(0);
+		transition: 120ms transform ease-in-out;
+		box-shadow: inset 1em 1em #f7a194;
+		background-color: CanvasText;
+		clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+		transform-origin: left top;
+	}
+	&:checked::before {
+		transform: scale(1);
+	}
+}
+
+/* On small

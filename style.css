@@ -161,16 +161,31 @@ body{
   vertical-align: top;
 }
 
-.scrolling-wrapper {
+.previews-wrapper {
   white-space:nowrap;
-  padding: 100px 50px 50px;
   display: flex;
   gap: 50px;
+  padding: 100px 50px 50px;
+}
+
+.mobile-wrapper {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.desktop-wrapper {
+  overflow-y: hidden;
+  overflow-x: auto;
+  justify-content: space-between;
 }
 
 .card{
   display: inline-block;
   position: relative;
+  width: 175px;
+  height: 525px;
+  background-color: #fff;
+  border-radius: 10px;
 }
 
 .overlay {
@@ -187,13 +202,9 @@ body{
 
 .preview-img
 {
-  height: 575px;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
-}
-
-.last-preview-element
-{
-  padding-right: 50px;
 }
 
 .filesdiv
