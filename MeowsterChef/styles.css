@@ -10,7 +10,9 @@ body {
     background-size:contain;
     margin: 0;
     padding: 0;
-    color: #76837f;
+    color: #ffffff;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #5B6F68;
 }
 
 .container {
@@ -29,6 +31,8 @@ header {
     width: 100%;
     z-index: 1000;
     text-shadow: rgb(63, 62, 62) 1px 0 10px;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgb(63, 62, 62);
 }
 
 footer{
@@ -77,6 +81,9 @@ section {
 .section h2 {
     color: #f7a194;
     font-size: 50px;
+    
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: rgb(146, 97, 90);
 }
 
 /* Animation */
@@ -85,7 +92,7 @@ section {
         opacity: 0;
         transform: translateY(-40px);
     }
-
+    
     to {
         opacity: 1;
         transform: translateY(0px);
@@ -160,6 +167,7 @@ li {
     transition: 0.6s ease;
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.3);
+    -webkit-text-stroke-width: 0px;
 }
 
 
@@ -230,6 +238,8 @@ form{
 
 label{
     color: #f7a194;
+    -webkit-text-stroke-width: 1.25px;
+    -webkit-text-stroke-color: rgb(146, 97, 90);
 }
 
 
