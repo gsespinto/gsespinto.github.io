@@ -2,6 +2,7 @@ body{
   background-color: rgb(240, 240, 240);
   margin: 0%;
   position: static;
+  font-family: 'Roboto Slab', serif;
 }
 
 .header
