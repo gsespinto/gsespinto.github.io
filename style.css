@@ -166,7 +166,7 @@ body{
   white-space:nowrap;
   display: flex;
   gap: 50px;
-  padding: 100px 50px 50px;
+  padding: 100px 12.5% 50px;
 }
 
 .mobile-wrapper {
