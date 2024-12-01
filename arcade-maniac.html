@@ -1,0 +1,83 @@
+<head>
+    <title>Arcade Maniac</title>
+    <link rel="icon" href="Resources\logo.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="logobox">
+            <a href="index.html" style="color:black; text-decoration: none;"
+               title="Go to home page">
+                GSESPINTO
+            </a>
+        </div>
+        <a href="https://gsespinto.itch.io" target="_blank" title="Itch.io">
+            <img class="socials" style="padding-right: 20;" src="Resources/itchio.png">
+        </a>
+        <a href="https://github.com/gsespinto" target="_blank" title="Github">
+            <img class="socials" src="Resources/github.png">
+        </a>
+        <a href="https://www.fiverr.com/gonpin" target="_blank" title="Fiverr">
+            <img class="socials" src="Resources/fiver.webp">
+        </a>
+        <a href="https://www.linkedin.com/in/gonçalo-pinto-689469198/" target="_blank" title="LinkedIn">
+            <img class="socials" src="Resources/linkedin.png">
+        </a>
+        <a href="https://play.google.com/store/apps/dev?id=7668335844038788871" target="_blank" title="Play Store">
+            <img class="socials" src="Resources/playstore.png">
+        </a>
+    </div>
+
+    <div class="homebox">
+        <div class="projecttext">
+            <p class="title">ARCADE MANIAC</p>
+            <p class="bodytext">
+                "Arcade Maniac" is a PC game developed using Godot 4.3 and GDScript, the engine's scripting language . The objective of 
+                this project was to reimagine classic games 
+                by integrating modern development techniques while introducing a unique gameplay and presentation twist: the game is experienced 
+                from a second-person perspective. In this setup, the game is presented through a spectator, which is the NPC that 
+                alternates between the different classic games. Additionally, the game combines a 3D environment with 2D games, 
+                taking full advantage of Godot's subviewports.<br><br> 
+                
+                During development, scalability was a key consideration. To this end, systems were designed to facilitate the creation of 
+                additional game viewports. These viewports correspond to classic games displayed on the televisions within the in-game environment. 
+                The communication between the TVs and game viewports was implemented in an agnostic manner, enabling seamless interaction 
+                regardless of the number of TVs or games. Each TV dynamically assigns a game and appropriately displays it's graphics and sounds.<br><br>
+                
+                The most challenging aspect was implementing the first game viewport (Pong). However, once this first game viewport was 
+                functional, the iteration process and development speed improved significantly. To streamline the coding process for the  
+                game viewports, I also developed debugging tools that enabled both in-editor previews and runtime diagnostics.<br><br> 
+                
+                Furthermore, I implemented a dynamic data manager that allowed to easily save and load new data, 
+                such as the player settings. Working with Godot was particularly advantageous, as its modular architecture allows 
+                developers to leverage its built-in components. For example, I used the FileDialog node to enable players 
+                to select MP3 files from their computer, which are then be used as the game’s soundtrack.<br><br> 
+                
+                Although this was a solo project, 
+                I implemented a branching workflow in version control. A development branch was used for ongoing work, and once a stable version of the 
+                project was achieved, it was tagged and committed to the main branch.
+        </div>
+    </div>
+
+    <div class="projectmedia" style="background-color: rgb(0, 0, 0);">
+        <iframe class="projectvideo" src="https://www.youtube.com/embed/7gICclrjspE"
+                frameborder="0" allowfullscreen></iframe>
+        <img class="projectimage" src="Resources/ArcadeManiac/0.gif">
+        <img class="projectimage" src="Resources/ArcadeManiac/1.gif">
+        <img class="projectimage" src="Resources/ArcadeManiac/2.gif">
+    </div>
+
+    <div class="filesdiv">
+        <a href="https://gsespinto.itch.io/arcade-maniac" target="_blank" title="Itch.io">
+            <img style="height: 50px; vertical-align: middle; margin: 20 5;" src="Resources/itchio.png"></a>
+        <a href="https://github.com/gsespinto/arcade-maniac" target="_blank" title="GitHub">
+            <img style="height: 50px; vertical-align: middle; margin: 20 5;" src="Resources/github.png"></a>
+    </div>
+    
+    <div class="footnotes">
+        <p> All copyrights reserved by Gonçalo Pinto 2024© </p>
+    </div>
+</body>
