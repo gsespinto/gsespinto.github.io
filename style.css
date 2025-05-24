@@ -1,23 +1,25 @@
-body{
-  background-color: rgb(240, 240, 240);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Roboto+Slab:wght@400;700&display=swap');
+
+body {
+  background-color: #f4f4f5;
   margin: 0%;
   position: static;
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Inter', sans-serif;
+  color: #1e1e1e;
 }
 
-.header
-{
-  background-color: #fff;
+.header {
+  background: linear-gradient(to right, #ffffff, #f0f0f0);
   width: 100%;
   height: 50px;
   position: fixed;
   z-index: 20;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.footnotes
-{
+.footnotes {
   display: flex;
   width: 100%;
   height: 50px;
@@ -26,12 +28,12 @@ body{
   justify-content: center;
   align-items: center;
   margin-top: auto;
-  background-color:black;
-  color: rgb(240, 240, 240);
+  background-color: #1e1e1e;
+  color: #ffffff;
+  font-size: 14px;
 }
 
-.logobox
-{
+.logobox {
   font-family: 'Roboto Slab', serif;
   box-sizing: border-box;
   display: inline-block;
@@ -41,27 +43,30 @@ body{
   padding: 0px 20px;
   text-align: center;
   vertical-align: middle;
+  color: #333;
 }
 
-.socials
-{
+.socials {
   width: 25px;
   height: 25px;
-  position:relative;
+  position: relative;
   align-self: center;
-  float:right;
-  top:25%;
+  float: right;
+  top: 25%;
   padding: 0 2;
+  transition: transform 0.2s;
+}
+.socials:hover {
+  transform: scale(1.1);
 }
 
-.homebox
-{
+.homebox {
   width: auto;
   height: fit-content;
   max-height: -moz-max-content;
   margin: 0 auto;
   text-align: center;
-  overflow-x:auto;
+  overflow-x: auto;
   overflow-y: hidden;
   padding: 50px 0px;
 }
@@ -72,42 +77,42 @@ body{
   }
 }
 
-.title
-{
+.title {
   font-family: 'Roboto Slab', serif;
   text-align: center;
   font-size: 40px;
   font-weight: bold;
+  color: #222;
 }
 
-.bodytext
-{
+.bodytext {
   text-align: justify;
   font-size: 20px;
-  font-family: 'Roboto', sans-serif;;
+  font-family: 'Inter', sans-serif;
+  color: #444;
 }
 
-.projecttext
-{
+.projecttext {
   width: 900px;
   height: 100%;
   margin: 0 auto;
   text-align: center;
+  color: #333;
 }
 
-.introtext{
+.introtext {
   text-align: justify;
   font-size: 19px;
   padding: 0px 15px 0px 0px;
-  font-family: 'Roboto', sans-serif;;
+  font-family: 'Inter', sans-serif;
+  color: #444;
 }
 
-.projectmedia
-{
+.projectmedia {
   width: auto;
   margin: 0 auto;
   text-align: center;
-  overflow-x:auto;
+  overflow-x: auto;
   overflow-y: hidden;
   height: fit-content;
   padding: 50px 0;
@@ -116,27 +121,29 @@ body{
   align-items: center;
 }
 
-.projectimage{
+.projectimage {
   width: 900px;
   height: auto;
   padding-top: 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.projectvideo{
+.projectvideo {
   width: 900px;
   height: 506.25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.introcontent
-{
+.introcontent {
   width: 950px;
   height: 100%;
   margin: 0 auto;
   text-align: center;
 }
 
-#ic
-{
+#ic {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -145,25 +152,23 @@ body{
   align-content: center;
 }
 
-#introimg
-{
+#introimg {
   vertical-align: top;
   margin-right: 0px;
   width: 400px;
   height: 350px;
-  box-shadow: 10px 10px 5px rgb(104, 104, 104);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 }
 
-#introtextbox
-{
+#introtextbox {
   margin: 0px;
   display: inline-block;
   vertical-align: top;
 }
 
 .previews-wrapper {
-  white-space:nowrap;
+  white-space: nowrap;
   display: flex;
   gap: 50px;
   padding: 100px 12.5% 50px;
@@ -180,13 +185,18 @@ body{
   justify-content: space-between;
 }
 
-.card{
+.card {
   display: inline-block;
   position: relative;
   width: 175px;
   height: 525px;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
 }
 
 .overlay {
@@ -195,32 +205,28 @@ body{
   left: 0;
   transition: opacity 0.5s;
 }
-
 .overlay:hover {
   opacity: 1;
   transition: opacity 0.5s;
 }
 
-.preview-img
-{
+.preview-img {
   width: 100%;
   height: 100%;
   border-radius: 10px;
 }
 
-.filesdiv
-{
-  background-color: rgb(240, 240, 240);
+.filesdiv {
+  background-color: #ffffff;
   width: 100%;
   height: fit-content;
   text-align: center;
   border-radius: 10px;
 }
 
-.filesbt
-{
-  background-color: black;
-  color: #fff;
+.filesbt {
+  background-color: #1e1e1e;
+  color: #ffffff;
   font-family: 'Roboto Slab', serif;
   box-sizing: border-box;
   display: inline-block;
@@ -230,10 +236,14 @@ body{
   padding: 0 20px;
   text-align: center;
   vertical-align: middle;
-  cursor:pointer;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.filesbt:hover {
+  background-color: #333333;
 }
 
-.stylized-input{
+.stylized-input {
   text-align: left;
   margin: 10px auto;
   padding: 12px 20px;
@@ -242,20 +252,33 @@ body{
   width: 500px;
   min-height: 50px;
   height: fit-content;
-  font-family: 'Roboto', sans-serif;;
+  font-family: 'Inter', sans-serif;
   font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
-#curriculum
-{
+#curriculum {
   margin: 0 12.5%;
 }
 
 @media screen and (min-width: 1366px) {
-  .projectimage{ width:1000px; }
-  .projectvideo{ width: 1000px; height: 562.5px; }
-  .introcontent{ width: 57.5%; }
-  .projecttext { width: 1000px; }
+  .projectimage {
+    width: 1000px;
+  }
+
+  .projectvideo {
+    width: 1000px;
+    height: 562.5px;
+  }
+
+  .introcontent {
+    width: 57.5%;
+  }
+
+  .projecttext {
+    width: 1000px;
+  }
 }
 
 table {
@@ -265,6 +288,11 @@ table {
 
 td {
   text-align: center;
-  padding:  25px;
+  padding: 25px;
   justify-content: center;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:last-child td {
+  border-bottom: transparent;
 }
