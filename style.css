@@ -56,9 +56,6 @@ body {
   padding: 0 2;
   transition: transform 0.2s;
 }
-.socials:hover {
-  transform: scale(1.1);
-}
 
 .homebox {
   width: auto;
@@ -231,7 +228,7 @@ body {
 }
 
 .filesbt {
-  background-color: #17171d;
+  background-color: black;
   color: #ffffff;
   font-family: 'Roboto Slab', serif;
   box-sizing: border-box;
@@ -244,9 +241,11 @@ body {
   vertical-align: middle;
   cursor: pointer;
   transition: background-color 0.2s;
+  transition: transform 0.2s;
 }
 .filesbt:hover {
   background-color: #B33951;
+  transform: scale(1.05);
 }
 
 .stylized-input {
@@ -305,4 +304,14 @@ tr:last-child td {
 
 a {
   color: #B33951
+}
+
+.basic-button{
+  color: #17171d;
+  transition: transform 0.2s;
+}
+
+.basic-button:hover {
+  filter: invert(29%) sepia(99%) saturate(580%) hue-rotate(303deg) brightness(89%) contrast(97%);
+  transform: scale(1.1);
 }
