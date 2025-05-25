@@ -202,7 +202,7 @@ body {
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px);
 }
 
 .overlay {
@@ -231,7 +231,7 @@ body {
 }
 
 .filesbt {
-  background-color: #1e1e1e;
+  background-color: #17171d;
   color: #ffffff;
   font-family: 'Roboto Slab', serif;
   box-sizing: border-box;
@@ -246,7 +246,7 @@ body {
   transition: background-color 0.2s;
 }
 .filesbt:hover {
-  background-color: #333333;
+  background-color: #B33951;
 }
 
 .stylized-input {
