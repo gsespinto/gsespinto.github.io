@@ -1,8 +1,11 @@
 function applyParallax() {
     const headerImage = document.querySelector(".projectheader");
 
-    // Exit early on small screens
-    if (window.innerWidth < 768 || !headerImage) return;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // Exit early on vertical windows
+    if (width < height || !headerImage) return;
 
     window.addEventListener("scroll", () => {
       const scrollY = window.scrollY;
