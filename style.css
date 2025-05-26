@@ -315,3 +315,8 @@ a {
   filter: invert(29%) sepia(99%) saturate(580%) hue-rotate(303deg) brightness(89%) contrast(97%);
   transform: scale(1.1);
 }
+
+.projectheader{
+  height: 450px;
+  margin-top: 50px;
+}
