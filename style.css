@@ -193,9 +193,8 @@ body {
   border: 2px solid #f4f4f5;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: inline-block;
+  position: relative;
 }
 
 .card:hover {
