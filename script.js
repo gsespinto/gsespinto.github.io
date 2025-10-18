@@ -81,14 +81,14 @@ function expandCard(card) {
       a.href = href || '#';
       a.target = '_blank';
       a.rel = 'noopener noreferrer';
-      a.textContent = titleText;
+      a.textContent = "View " + titleText + "🔗";
       titleEl.appendChild(a);
       card.appendChild(titleEl);
     } else {
       const a = titleEl.querySelector('a');
       if (a) {
         a.href = href || '#';
-        a.textContent = titleText;
+        a.textContent = "View " + titleText + "🔗";
       }
     }
   } catch (e) {
