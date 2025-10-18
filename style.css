@@ -173,49 +173,108 @@ body {
   display: flex;
   gap: 50px;
   padding: 100px 12.5% 50px;
+  align-items: flex-start;
+  position: relative; /* needed so expansion-layer can be absolutely centered within */
+  transition: padding 0.35s ease;
 }
 
-.mobile-wrapper {
-  flex-wrap: wrap;
+/* When expanding, center the row and hide overflow so translated cards go offscreen */
+.previews-wrapper.expanding {
   justify-content: center;
+  overflow: hidden;
+  padding-left: 6%;  /* slightly tighter to emphasize centering - tweak if needed */
+  padding-right: 6%;
+  align-items: center; /* <-- vertical center when expanding */
 }
 
-.desktop-wrapper {
-  overflow-y: hidden;
-  overflow-x: auto;
-  justify-content: space-between;
+/* ensure previews keep original proportions before expansion */
+.preview-img {
+  width: 100%;
+  height: auto; /* preserve original aspect ratio */
+  display: block;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+/* expansion layer (centered overlay inside previews-wrapper) */
+.expansion-layer {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65%;              /* expanded width (adjust if you prefer) */
+  max-width: 1000px;
+  padding-top: 56.25%;     /* 16:9 aspect ratio */
+  z-index: 60;
+  pointer-events: auto;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* visible state */
+.expansion-layer.visible {
+  display: block;
+  opacity: 1;
+}
+
+/* iframe inside the expansion layer fills it */
+.expansion-layer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 10px;
+}
+
+/* fade others when expansion is active (no size change) */
+.card.shrunk {
+  opacity: 0.14;
+  pointer-events: none;
+  filter: blur(0.2px);
+  transition: opacity 0.35s ease;
+}
+
+/* when expansion active we hide previews under the expansion area (optional) */
+.card.expanded-preview-hidden .overlay,
+.card.expanded-preview-hidden .preview-img {
+  visibility: hidden;
 }
 
 .card {
-  width: 200px;
+  position: relative; /* ensure overlay absolute positioning is relative to card */
+  width: 200px; /* preserve original size */
   background-color: #f4f4f5;
   border-radius: 10px;
   border: 2px solid #f4f4f5;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease;
+  transition: transform 0.45s cubic-bezier(.2,.9,.2,1), opacity 0.35s ease;
   display: inline-block;
-  position: relative;
+  overflow: visible;
 }
 
-.card:hover {
-  transform: translateY(-8px);
+/* fade and push non-target cards offscreen while preserving their size */
+.card.shrunk {
+  opacity: 0.12;
+  pointer-events: none;
+  /* default no translation so we can apply directional classes */
+  transform: none;
 }
 
-.overlay {
-  position: absolute;
-  opacity: 0;
-  left: 0;
-  transition: opacity 0.5s;
+/* push left/right offscreen (keeps width) */
+.card.shrunk.left {
+  transform: translateX(-140%) translateY(0); /* explicit translateY so movement is from centered baseline */
 }
-.overlay:hover {
-  opacity: 1;
-  transition: opacity 0.5s;
+.card.shrunk.right {
+  transform: translateX(140%) translateY(0);  /* explicit translateY so movement is from centered baseline */
 }
 
-.preview-img {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
+/* keep expanded card above others and slightly scale for emphasis */
+.card.expanded {
+  z-index: 80;
+  transition: width 0.45s cubic-bezier(.2,.9,.2,1), transform 0.35s ease;
 }
 
 .filesdiv {
@@ -324,4 +383,86 @@ a {
   transform: translateY(0px);
   transition: transform 0.1s ease-out;
   will-change: transform;
+}
+
+/* inline card expansion: expand the card in-place and let video define height via padding trick */
+.card.expanded {
+  flex: 0 0 65%;
+  width: 65%;
+  max-width: 1000px;
+  z-index: 70;
+  transition: flex-basis 0.45s cubic-bezier(.2,.9,.2,1), width 0.45s ease;
+}
+
+/* the injected video container inside the expanded card */
+.card .video-container {
+  display: none;
+}
+.card.expanded .video-container {
+  display: block;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  position: relative;
+}
+.card.expanded .video-container iframe {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 10px;
+}
+
+/* hide preview+overlay from layout when expanded so video height is used */
+.card.expanded .preview-img,
+.card.expanded .overlay {
+  display: none;
+}
+
+/* fade other cards without resizing them */
+.card.shrunk {
+  opacity: 0.12;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+/* Ensure preview stays in normal stacking, overlay sits above it */
+.preview-img {
+  position: relative;
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute; /* already set, keep it */
+  z-index: 9999; /* ensure overlay appears on top of the preview image */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: auto; /* make sure hover events reach the overlay */
+}
+
+/* background-based overlay used to reliably play GIFs */
+.overlay-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 3; /* on top of preview image and overlay img */
+  pointer-events: none; /* doesn't block mouse events */
+}
+
+/* show the animated overlay GIF when the card is hovered (img fallback kept for semantics) */
+.card:hover .overlay {
+  opacity: 0; /* keep image hidden — background will show */
+}
+.card:hover .overlay-bg {
+  opacity: 1;
 }

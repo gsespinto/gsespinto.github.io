@@ -1,9 +1,3 @@
-<script>
-  function resetGif(element) {
-    element.src = element.src;
-  }  
-</script>
-
 <head>
     <title>Home Page</title>
     <meta description="Portofolio's Home Page"/>
@@ -38,23 +32,37 @@
 
   <div class="projectbox homebox parallax">
     <div class="previews-wrapper desktop-wrapper">
-      <div class="card"><a href="arcade-maniac.html"><img class="preview-img" src="Resources/arcade_maniac.png" title="Arcade arcade-maniac"></a>
-        <a href="arcade-maniac.html"><img  class="preview-img overlay" src="Resources/ArcadeManiac/PreviewGif.gif" onmouseover="resetGif(this)"></a>
+      <!-- expansion layer centered above cards; hidden until needed -->
+      <div class="expansion-layer" aria-hidden="true"></div>
+
+      <div class="card" data-youtube-id="7gICclrjspE">
+        <a href="arcade-maniac.html"><img class="preview-img" src="Resources/arcade_maniac.png" title="Arcade arcade-maniac"></a>
+        <a href="arcade-maniac.html"><img class="preview-img overlay" src="Resources/ArcadeManiac/PreviewGif.gif" data-duration="2500" onmouseover="resetGif(this)"></a>
       </div>
-      <div class="card"><a href="meowster-chef-dev.html"><img class="preview-img" src="Resources/meowsterchef.png" title="Meowster Chef"></a>
-        <a href="meowster-chef-dev.html"><img  class="preview-img overlay" src="Resources/MeowsterChef/PreviewGIF.gif" onmouseover="resetGif(this)"></a>
-      </div>    
-      <div class="card"><a href="project-m.html"><img class="preview-img" src="Resources/projectm.png" title="ProjectM"></a>
-        <a href="project-m.html"><img  class="preview-img overlay" src="Resources/ProjectM/PreviewGIF.gif" onmouseover="resetGif(this)"></a>
+
+      <div class="card" data-youtube-id="UqyYgPRjMbA">
+        <a href="meowster-chef-dev.html"><img class="preview-img" src="Resources/meowsterchef.png" title="Meowster Chef"></a>
+        <a href="meowster-chef-dev.html"><img class="preview-img overlay" src="Resources/MeowsterChef/PreviewGIF.gif" data-duration="2600" onmouseover="resetGif(this)"></a>
       </div>
-      <div class="card"><a href="the-deer-maze.html"><img  class="preview-img" src="Resources/deermaze.png" title="The Deer Maze"></a>
-        <a href="the-deer-maze.html"><img  class="preview-img overlay" src="Resources/TheDeerMaze/PreviewGIF.gif" onmouseover="resetGif(this)"></a>
+
+      <div class="card" data-youtube-id="y39U_ViUYUc">
+        <a href="project-m.html"><img class="preview-img" src="Resources/projectm.png" title="ProjectM"></a>
+        <a href="project-m.html"><img class="preview-img overlay" src="Resources/ProjectM/PreviewGIF.gif" data-duration="2000" onmouseover="resetGif(this)"></a>
       </div>
-      <div class="card"><a href="ninja-baseball-men.html"><img  class="preview-img" src="Resources/NBM.png" title="Ninja Baseball Men"></a>
-        <a href="ninja-baseball-men.html"><img  class="preview-img overlay" src="Resources/NinjaBaseballMen/PreviewGIF.gif" onmouseover="resetGif(this)"></a>
+
+      <div class="card" data-youtube-id="aGxYmRPkUuI">
+        <a href="the-deer-maze.html"><img class="preview-img" src="Resources/deermaze.png" title="The Deer Maze"></a>
+        <a href="the-deer-maze.html"><img class="preview-img overlay" src="Resources/TheDeerMaze/PreviewGIF.gif" data-duration="3000" onmouseover="resetGif(this)"></a>
       </div>
-      <div class="card"><a href="sonance.html"><img class="preview-img" src="Resources/sonancepreview.png" title="Sonance"></a>
-        <a href="sonance.html"><img  class="preview-img overlay" src="Resources/Sonance/PreviewGIF.gif" onmouseover="resetGif(this)"></a>
+
+      <div class="card" data-youtube-id="WlMXQp-EYBE">
+        <a href="ninja-baseball-men.html"><img class="preview-img" src="Resources/NBM.png" title="Ninja Baseball Men"></a>
+        <a href="ninja-baseball-men.html"><img class="preview-img overlay" src="Resources/NinjaBaseballMen/PreviewGIF.gif" data-duration="2800" onmouseover="resetGif(this)"></a>
+      </div>
+
+      <div class="card" data-youtube-id="teTjawN_gJU">
+        <a href="sonance.html"><img class="preview-img" src="Resources/sonancepreview.png" title="Sonance"></a>
+        <a href="sonance.html"><img class="preview-img overlay" src="Resources/Sonance/PreviewGIF.gif" data-duration="2400" onmouseover="resetGif(this)"></a>
       </div>
     </div>
   </div>
