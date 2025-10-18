@@ -140,22 +140,22 @@ function stopOverlayBg(card) {
 /* hover/timer behavior: when hovering a card, start timer using overlay data-duration;
    when timer ends, expandCard(card). GIF restart via inline onmouseover resetGif attribute. */
 cards.forEach(card => {
-  // remove cached overlay reference; query inside handlers so replacements remain live
-  let tid = null;
+	let tid = null;
 
-  card.addEventListener("mouseenter", () => {
-    // show reliable background GIF animation
-    playOverlayBg(card);
+	card.addEventListener('mouseenter', (e) => {
+		// start overlay animation using background (reliable)
+		playOverlayBg(card);
 
-    // compute duration from img dataset (fallback)
-    const overlay = card.querySelector(".overlay");
-    const duration = overlay ? parseInt(overlay.dataset.duration || 2000, 10) : 2000;
+		// determine duration: prefer card's data-hover-duration, then overlay data-duration, else 2000
+		const overlay = card.querySelector('.overlay');
+		const duration = parseInt(card.dataset.hoverDuration || (overlay ? overlay.dataset.duration : 2000), 10) || 2000;
 
-    tid = setTimeout(() => expandCard(card), duration);
-    timerMap.set(card, tid);
-  });
+		// start timer to expand after duration
+		tid = setTimeout(() => expandCard(card), duration);
+		timerMap.set(card, tid);
+	});
 
-  card.addEventListener("mouseleave", () => {
+	card.addEventListener("mouseleave", () => {
     const t = timerMap.get(card);
     if (t) {
       clearTimeout(t);
