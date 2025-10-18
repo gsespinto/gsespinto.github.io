@@ -79,8 +79,7 @@ function expandCard(card) {
       titleEl.className = 'project-title';
       const a = document.createElement('a');
       a.href = href || '#';
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
+      // open in same tab (do not set target='_blank')
       a.textContent = "View " + titleText + "🔗";
       titleEl.appendChild(a);
       card.appendChild(titleEl);
