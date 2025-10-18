@@ -65,6 +65,36 @@ function expandCard(card) {
   container.setAttribute("aria-hidden", "false");
   container.innerHTML = "";
 
+  // Create or update project title badge with link
+  try {
+    const firstAnchor = card.querySelector('a');
+    const href = firstAnchor ? firstAnchor.getAttribute('href') : '#';
+    const previewImg = card.querySelector('.preview-img:not(.overlay)');
+    const titleText = (previewImg && previewImg.getAttribute('title')) ||
+                      (href ? href.split('/').pop().replace('.html','').replace(/[-_]/g,' ') : 'Project');
+
+    let titleEl = card.querySelector('.project-title');
+    if (!titleEl) {
+      titleEl = document.createElement('div');
+      titleEl.className = 'project-title';
+      const a = document.createElement('a');
+      a.href = href || '#';
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.textContent = titleText;
+      titleEl.appendChild(a);
+      card.appendChild(titleEl);
+    } else {
+      const a = titleEl.querySelector('a');
+      if (a) {
+        a.href = href || '#';
+        a.textContent = titleText;
+      }
+    }
+  } catch (e) {
+    // fail silently if title creation fails
+  }
+
   const yt = card.dataset.youtubeId;
   if (yt) {
     const iframe = document.createElement("iframe");
@@ -205,16 +235,25 @@ cards.forEach(card => {
 		stopOverlayBg(card);
 	});
 
+	// Click behavior:
+	// - If the click target is a link inside the video-meta or project-title (the expanded preview), allow navigation.
+	// - Otherwise prevent default and open the preview for that card (expandCard).
 	card.addEventListener('click', (e) => {
-		if (!expandedCard) {
-			e.preventDefault(); // prevent navigation on first click so user can see expanded video
-			const t = timerMap.get(card);
-			if (t) { clearTimeout(t); timerMap.delete(card); }
-			// hide any overlay bg for this card
-			stopOverlayBg(card);
-			expandCard(card);
+		const target = e.target;
+		// allow clicks on links inside the expanded preview meta/title to follow normally
+		if (target.closest && (target.closest('.video-meta a') || target.closest('.project-title a'))) {
+			return;
 		}
+
+		// always prevent navigation and open the preview for the clicked card
+		e.preventDefault();
+		const t = timerMap.get(card);
+		if (t) { clearTimeout(t); timerMap.delete(card); }
+		stopOverlayBg(card);
+		expandCard(card);
 	});
+
+	// ...existing code...
 });
 
 /* ensure all overlays stop when expanding a card (so no GIFs visible while video shows) */

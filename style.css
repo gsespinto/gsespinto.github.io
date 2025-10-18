@@ -466,3 +466,38 @@ a {
 .card:hover .overlay-bg {
   opacity: 1;
 }
+
+/* Project title badge shown when a card is expanded */
+.project-title {
+  display: none;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 95;
+  font-family: 'Roboto Slab', serif;
+  font-size: 18px;
+  color: #ffffff;
+  background: rgba(0,0,0,0.55);
+  padding: 6px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  pointer-events: auto;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.18);
+}
+
+.project-title a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* show when the card is expanded */
+.card.expanded .project-title {
+  display: block;
+}
+
+/* slight responsive font scale on smaller screens */
+@media screen and (max-width: 600px) {
+  .project-title { font-size: 14px; padding: 5px 8px; }
+}
