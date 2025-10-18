@@ -104,46 +104,84 @@ function collapseAll() {
   try { previewWrapper.scrollTo({ left: 0, behavior: 'smooth' }); } catch(e) {}
 }
 
-/* Build reliable background-overlay elements for GIF playback */
+/* Build reliable background-overlay elements for GIF playback (store loader/pending state) */
 const overlayMap = new WeakMap();
 cards.forEach(card => {
   const overlayImg = card.querySelector('.overlay');
   if (!overlayImg) return;
-  // create overlay-bg div and keep a reference
   const bg = document.createElement('div');
   bg.className = 'overlay-bg';
   bg.style.opacity = '0';
-  // store original src for use
-  bg.dataset.src = overlayImg.getAttribute('src') || '';
   card.appendChild(bg);
-  overlayMap.set(card, { img: overlayImg, bg });
+  overlayMap.set(card, { img: overlayImg, bg, loader: null, pendingTimeout: null });
 });
 
-/* helper to show/hide animated background */
-function playOverlayBg(card) {
+/* Robust play/stop: preload Image, reveal bg on load (fallback after 300ms), cancel on stop */
+function playOverlayBg(card){
+  // only block GIF playback for the card that currently has the video expanded
+  if (!card || (expandedCard && expandedCard === card)) return;
   const entry = overlayMap.get(card);
   if (!entry) return;
-  const { bg, img } = entry;
-  const src = (img.getAttribute('src') || '').split('?')[0];
-  bg.style.backgroundImage = `url('${src}?_=${Date.now()}')`;
-  bg.style.opacity = '1';
+  const { img, bg } = entry;
+
+  // cancel previous loader/timeout
+  if (entry.loader) { entry.loader.onload = null; entry.loader.onerror = null; entry.loader = null; }
+  if (entry.pendingTimeout) { clearTimeout(entry.pendingTimeout); entry.pendingTimeout = null; }
+
+  const src = (img.getAttribute('src') || '').split('?')[0] + '?_=' + Date.now();
+  const loader = new Image();
+  entry.loader = loader;
+
+  // fallback: ensure something appears after 300ms
+  entry.pendingTimeout = setTimeout(() => {
+    if (bg) {
+      bg.style.backgroundImage = `url("${src}")`;
+      bg.style.opacity = '1';
+    }
+    entry.pendingTimeout = null;
+  }, 300);
+
+  loader.onload = () => {
+    if (entry.loader !== loader) return; // cancelled
+    if (entry.pendingTimeout) { clearTimeout(entry.pendingTimeout); entry.pendingTimeout = null; }
+    if (bg) {
+      bg.style.backgroundImage = `url("${src}")`;
+      bg.style.opacity = '1';
+    }
+    entry.loader = null;
+  };
+
+  loader.onerror = () => {
+    // let fallback timeout handle it
+    entry.loader = null;
+  };
+
+  // start loading
+  loader.src = src;
+  overlayMap.set(card, entry);
 }
-function stopOverlayBg(card) {
+
+function stopOverlayBg(card){
   const entry = overlayMap.get(card);
   if (!entry) return;
   const { bg } = entry;
-  bg.style.opacity = '0';
-  // optional: clear background after fade to release memory
-  setTimeout(() => { if (bg) bg.style.backgroundImage = ''; }, 400);
+  if (entry.loader) { try { entry.loader.onload = null; entry.loader.onerror = null; } catch(e){}; entry.loader = null; }
+  if (entry.pendingTimeout) { clearTimeout(entry.pendingTimeout); entry.pendingTimeout = null; }
+  if (bg) {
+    bg.style.opacity = '0';
+    setTimeout(() => { if (bg) bg.style.backgroundImage = ''; }, 350);
+  }
+  overlayMap.set(card, entry);
 }
 
-/* hover/timer behavior: when hovering a card, start timer using overlay data-duration;
-   when timer ends, expandCard(card). GIF restart via inline onmouseover resetGif attribute. */
+/* hover/timer behavior: when hovering a card, start timer using data-hover-duration; ignore if video shown */
 cards.forEach(card => {
 	let tid = null;
 
 	card.addEventListener('mouseenter', (e) => {
-		// start overlay animation using background (reliable)
+		// start overlay animation using background (robust preload)
+		// playOverlayBg now internally ignores the hovered card when it is the expanded one,
+		// so we can call it unconditionally here.
 		playOverlayBg(card);
 
 		// determine duration: prefer card's data-hover-duration, then overlay data-duration, else 2000
@@ -155,40 +193,48 @@ cards.forEach(card => {
 		timerMap.set(card, tid);
 	});
 
-	card.addEventListener("mouseleave", () => {
-    const t = timerMap.get(card);
-    if (t) {
-      clearTimeout(t);
-      timerMap.delete(card);
-    }
-    // hide background GIF when leaving
-    stopOverlayBg(card);
-  });
+	card.addEventListener('mouseleave', (e) => {
+		// cancel pending timer
+		const t = timerMap.get(card);
+		if (t) {
+			clearTimeout(t);
+			timerMap.delete(card);
+			tid = null;
+		}
+		// hide overlay bg and cancel loaders
+		stopOverlayBg(card);
+	});
 
-  card.addEventListener("click", (e) => {
-    if (!expandedCard) {
-      e.preventDefault(); // prevent navigation on first click so user can see expanded video
-      const t = timerMap.get(card);
-      if (t) { clearTimeout(t); timerMap.delete(card); }
-      // ensure overlay bg is hidden while expanded video shows
-      stopOverlayBg(card);
-      expandCard(card);
-    }
-  });
+	card.addEventListener('click', (e) => {
+		if (!expandedCard) {
+			e.preventDefault(); // prevent navigation on first click so user can see expanded video
+			const t = timerMap.get(card);
+			if (t) { clearTimeout(t); timerMap.delete(card); }
+			// hide any overlay bg for this card
+			stopOverlayBg(card);
+			expandCard(card);
+		}
+	});
 });
 
-// Ensure overlay backgrounds are hidden when collapsing
-const oldCollapseAll = collapseAll;
-collapseAll = function() {
-  // call original collapse functionality (if defined above)
-  // ...existing collapse logic...
-  // hide all overlay-bg elements
+/* ensure all overlays stop when expanding a card (so no GIFs visible while video shows) */
+const oldExpandCard = expandCard;
+expandCard = function(card) {
+  // stop all overlay bg first
   cards.forEach(c => stopOverlayBg(c));
-  // call original collapse code behavior if needed (we replaced earlier with same name)
-  try { oldCollapseAll(); } catch(e) { /* noop if old not present */ }
+  // call original expand logic
+  try { oldExpandCard(card); } catch(e) {}
 };
 
-// collapse on outside click or Escape key
+/* ensure overlays are stopped on collapse as well */
+const oldCollapseAll = collapseAll;
+collapseAll = function() {
+  // hide overlays before collapsing
+  cards.forEach(c => stopOverlayBg(c));
+  try { oldCollapseAll(); } catch(e) {}
+};
+
+/* collapse on outside click or Escape key */
 document.addEventListener("click", (e) => {
   if (!expandedCard) return;
   if (expandedCard.contains(e.target)) return;
