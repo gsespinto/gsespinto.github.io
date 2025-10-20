@@ -373,7 +373,7 @@ a {
   min-height: 400px;
   position: relative;
   margin: 0 auto;
-  max-width: 1400px;
+  width: 100%;
 }
 
 .project-section:first-of-type {
