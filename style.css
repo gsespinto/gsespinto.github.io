@@ -623,3 +623,23 @@ a {
   filter: none;
   transform: scale(1.05);
 }
+
+.projectbox {
+  position: relative;
+  overflow: hidden; /* ensures the image never escapes bounds */
+  height: 475px; /* your target height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.projectheader {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin-top: 50px; /* keep your spacing under the header */
+}
+
+
+
+
