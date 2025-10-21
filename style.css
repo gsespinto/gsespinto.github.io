@@ -73,12 +73,6 @@ body {
   padding: 0;
 }
 
-@-moz-document url-prefix() {
-  .homebox {
-    height: 650px;
-  }
-}
-
 .title {
   font-family: 'Roboto Slab', serif;
   text-align: center;
@@ -95,7 +89,7 @@ body {
 
 .projecttext {
   width: 900px;
-  height: 100%;
+  height: auto;
   margin: 0 auto;
   text-align: center;
 }
@@ -639,7 +633,5 @@ a {
   object-fit: contain;
   margin-top: 50px; /* keep your spacing under the header */
 }
-
-
 
 
