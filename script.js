@@ -4,20 +4,20 @@ const cards = document.querySelectorAll(".previews-wrapper .card");
 window.addEventListener("resize", addWrapperClass);
 addWrapperClass();
 
-function addWrapperClass(){
-    if (!previewWrapper){
-        return;
-    }
-    
-    let w = window.innerWidth;
-    previewWrapper.classList.remove("mobile-wrapper");
-    previewWrapper.classList.remove("desktop-wrapper");
-    
-    if (w <= 1080){
-        previewWrapper.classList.add("mobile-wrapper");
-    } else {
-        previewWrapper.classList.add("desktop-wrapper");
-    }
+function addWrapperClass() {
+  if (!previewWrapper) {
+    return;
+  }
+
+  let w = window.innerWidth;
+  previewWrapper.classList.remove("mobile-wrapper");
+  previewWrapper.classList.remove("desktop-wrapper");
+
+  if (w <= 1080) {
+    previewWrapper.classList.add("mobile-wrapper");
+  } else {
+    previewWrapper.classList.add("desktop-wrapper");
+  }
 }
 
 /* resetGif: replace the <img> with a fresh clone to force GIF restart reliably */
@@ -50,7 +50,7 @@ function expandCard(card) {
   cardsArr.forEach((c, i) => {
     if (c === card) return;
     c.classList.add("shrunk");
-    c.classList.remove("left","right");
+    c.classList.remove("left", "right");
     if (i < idx) c.classList.add("left");
     else c.classList.add("right");
   });
@@ -71,7 +71,7 @@ function expandCard(card) {
     const href = firstAnchor ? firstAnchor.getAttribute('href') : '#';
     const previewImg = card.querySelector('.preview-img:not(.overlay)');
     const titleText = (previewImg && previewImg.getAttribute('title')) ||
-                      (href ? href.split('/').pop().replace('.html','').replace(/[-_]/g,' ') : 'Project');
+      (href ? href.split('/').pop().replace('.html', '').replace(/[-_]/g, ' ') : 'Project');
 
     let titleEl = card.querySelector('.project-title');
     if (!titleEl) {
@@ -109,7 +109,7 @@ function expandCard(card) {
   try {
     const left = card.offsetLeft + (card.offsetWidth / 2) - (previewWrapper.clientWidth / 2);
     previewWrapper.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
-  } catch (e) {}
+  } catch (e) { }
 }
 
 function collapseAll() {
@@ -120,7 +120,7 @@ function collapseAll() {
   cards.forEach(c => {
     c.classList.remove("expanded");
     c.classList.remove("shrunk");
-    c.classList.remove("left","right");
+    c.classList.remove("left", "right");
     const container = c.querySelector(".video-container");
     if (container) {
       container.setAttribute("aria-hidden", "true");
@@ -130,7 +130,7 @@ function collapseAll() {
   expandedCard = null;
 
   // optionally scroll back a bit to show entire row (smooth)
-  try { previewWrapper.scrollTo({ left: 0, behavior: 'smooth' }); } catch(e) {}
+  try { previewWrapper.scrollTo({ left: 0, behavior: 'smooth' }); } catch (e) { }
 }
 
 /* Build reliable background-overlay elements for GIF playback (store loader/pending state) */
@@ -146,7 +146,7 @@ cards.forEach(card => {
 });
 
 /* Robust play/stop: preload Image, reveal bg on load (fallback after 300ms), cancel on stop */
-function playOverlayBg(card){
+function playOverlayBg(card) {
   // only block GIF playback for the card that currently has the video expanded
   if (!card || (expandedCard && expandedCard === card)) return;
   const entry = overlayMap.get(card);
@@ -190,11 +190,11 @@ function playOverlayBg(card){
   overlayMap.set(card, entry);
 }
 
-function stopOverlayBg(card){
+function stopOverlayBg(card) {
   const entry = overlayMap.get(card);
   if (!entry) return;
   const { bg } = entry;
-  if (entry.loader) { try { entry.loader.onload = null; entry.loader.onerror = null; } catch(e){}; entry.loader = null; }
+  if (entry.loader) { try { entry.loader.onload = null; entry.loader.onerror = null; } catch (e) { }; entry.loader = null; }
   if (entry.pendingTimeout) { clearTimeout(entry.pendingTimeout); entry.pendingTimeout = null; }
   if (bg) {
     bg.style.opacity = '0';
@@ -205,71 +205,71 @@ function stopOverlayBg(card){
 
 /* hover/timer behavior: when hovering a card, start timer using data-hover-duration; ignore if video shown */
 cards.forEach(card => {
-	let tid = null;
+  let tid = null;
 
-	card.addEventListener('mouseenter', (e) => {
-		// start overlay animation using background (robust preload)
-		// playOverlayBg now internally ignores the hovered card when it is the expanded one,
-		// so we can call it unconditionally here.
-		playOverlayBg(card);
+  card.addEventListener('mouseenter', (e) => {
+    // start overlay animation using background (robust preload)
+    // playOverlayBg now internally ignores the hovered card when it is the expanded one,
+    // so we can call it unconditionally here.
+    playOverlayBg(card);
 
-		// determine duration: prefer card's data-hover-duration, then overlay data-duration, else 2000
-		const overlay = card.querySelector('.overlay');
-		const duration = parseInt(card.dataset.hoverDuration || (overlay ? overlay.dataset.duration : 2000), 10) || 2000;
+    // determine duration: prefer card's data-hover-duration, then overlay data-duration, else 2000
+    const overlay = card.querySelector('.overlay');
+    const duration = parseInt(card.dataset.hoverDuration || (overlay ? overlay.dataset.duration : 2000), 10) || 2000;
 
-		// start timer to expand after duration
-		tid = setTimeout(() => expandCard(card), duration);
-		timerMap.set(card, tid);
-	});
+    // start timer to expand after duration
+    tid = setTimeout(() => expandCard(card), duration);
+    timerMap.set(card, tid);
+  });
 
-	card.addEventListener('mouseleave', (e) => {
-		// cancel pending timer
-		const t = timerMap.get(card);
-		if (t) {
-			clearTimeout(t);
-			timerMap.delete(card);
-			tid = null;
-		}
-		// hide overlay bg and cancel loaders
-		stopOverlayBg(card);
-	});
+  card.addEventListener('mouseleave', (e) => {
+    // cancel pending timer
+    const t = timerMap.get(card);
+    if (t) {
+      clearTimeout(t);
+      timerMap.delete(card);
+      tid = null;
+    }
+    // hide overlay bg and cancel loaders
+    stopOverlayBg(card);
+  });
 
-	// Click behavior:
-	// - If the click target is a link inside the video-meta or project-title (the expanded preview), allow navigation.
-	// - Otherwise prevent default and open the preview for that card (expandCard).
-	card.addEventListener('click', (e) => {
-		const target = e.target;
-		// allow clicks on links inside the expanded preview meta/title to follow normally
-		if (target.closest && (target.closest('.video-meta a') || target.closest('.project-title a'))) {
-			return;
-		}
+  // Click behavior:
+  // - If the click target is a link inside the video-meta or project-title (the expanded preview), allow navigation.
+  // - Otherwise prevent default and open the preview for that card (expandCard).
+  card.addEventListener('click', (e) => {
+    const target = e.target;
+    // allow clicks on links inside the expanded preview meta/title to follow normally
+    if (target.closest && (target.closest('.video-meta a') || target.closest('.project-title a'))) {
+      return;
+    }
 
-		// always prevent navigation and open the preview for the clicked card
-		e.preventDefault();
-		const t = timerMap.get(card);
-		if (t) { clearTimeout(t); timerMap.delete(card); }
-		stopOverlayBg(card);
-		expandCard(card);
-	});
+    // always prevent navigation and open the preview for the clicked card
+    e.preventDefault();
+    const t = timerMap.get(card);
+    if (t) { clearTimeout(t); timerMap.delete(card); }
+    stopOverlayBg(card);
+    expandCard(card);
+  });
 
-	// ...existing code...
+  // ...existing code...
 });
 
 /* ensure all overlays stop when expanding a card (so no GIFs visible while video shows) */
 const oldExpandCard = expandCard;
-expandCard = function(card) {
+expandCard = function (card) {
   // stop all overlay bg first
   cards.forEach(c => stopOverlayBg(c));
   // call original expand logic
-  try { oldExpandCard(card); } catch(e) {}
+  try { oldExpandCard(card); } catch (e) { }
 };
 
 /* ensure overlays are stopped on collapse as well */
 const oldCollapseAll = collapseAll;
-collapseAll = function() {
+collapseAll = function () {
   // hide overlays before collapsing
   cards.forEach(c => stopOverlayBg(c));
-  try { oldCollapseAll(); } catch(e) {}
+  try { oldCollapseAll(); } catch (e) { }
 };
 
 /* collapse on outside click or Escape key */

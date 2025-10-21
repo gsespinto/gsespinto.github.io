@@ -7,7 +7,7 @@ body {
     font-family: 'sushi-cat', Arial, sans-serif;
     font-size: 30px;
     background-image: url("Resources/background.png");
-    background-size:contain;
+    background-size: contain;
     margin: 0;
     padding: 0;
     color: #ffffff;
@@ -35,7 +35,7 @@ header {
     -webkit-text-stroke-color: rgb(63, 62, 62);
 }
 
-footer{
+footer {
     width: 100%;
     text-align: center;
     align-items: center;
@@ -81,7 +81,7 @@ section {
 .section h2 {
     color: #f7a194;
     font-size: 50px;
-    
+
     -webkit-text-stroke-width: 0.5px;
     -webkit-text-stroke-color: rgb(146, 97, 90);
 }
@@ -92,7 +92,7 @@ section {
         opacity: 0;
         transform: translateY(-40px);
     }
-    
+
     to {
         opacity: 1;
         transform: translateY(0px);
@@ -119,7 +119,7 @@ li {
     margin-bottom: 5px;
 }
 
-.slideshow-container{
+.slideshow-container {
     display: flex;
     width: 100%;
     height: 500px;
@@ -127,13 +127,13 @@ li {
 }
 
 .mySlides {
-    display:block;
+    display: block;
     width: 100%;
     height: 100%;
     margin: -20px 0;
 }
 
-.screenshot-container{
+.screenshot-container {
     width: 100%;
     height: 100%;
     display: flex;
@@ -226,7 +226,7 @@ li {
     }
 }
 
-form{
+form {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -236,7 +236,7 @@ form{
     justify-content: center;
 }
 
-label{
+label {
     color: #f7a194;
     -webkit-text-stroke-width: 1.25px;
     -webkit-text-stroke-color: rgb(146, 97, 90);
@@ -244,61 +244,66 @@ label{
 
 
 input[type=text] {
-	appearance: none;
-	border: none;
-	outline: none;
-	border-bottom: .2em solid #f7a194;
-	background: rgba(#f7a194, .2);
-	border-radius: .2em .2em 0 0;
-	padding: .4em;
-	color: #f7a194;
+    appearance: none;
+    border: none;
+    outline: none;
+    border-bottom: .2em solid #f7a194;
+    background: rgba(#f7a194, .2);
+    border-radius: .2em .2em 0 0;
+    padding: .4em;
+    color: #f7a194;
 }
 
-input[type="submit"]{
+input[type="submit"] {
     margin-top: 20px;
-	appearance: none;
+    appearance: none;
     text-align: center;
     font-family: 'sushi-cat';
     font-size: 20px;
-	border: .2em solid #f7a194;
-	background: #fff;
-	padding: .85em 1.5em;
-	color: #f7a194;
-	border-radius: 2em;
-	transition: 1s;
-	&:hover, &:focus, &:active {
-		background: #f7a194;
-		color: #fff;
-	}
+    border: .2em solid #f7a194;
+    background: #fff;
+    padding: .85em 1.5em;
+    color: #f7a194;
+    border-radius: 2em;
+    transition: 1s;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background: #f7a194;
+        color: #fff;
+    }
 }
 
 input[type=checkbox] {
-	appearance: none;
-  background-color: #fff;
-  margin: 0;
-	font: inherit;
-  color: currentColor;
-  width: 1em;
-  height: 1em;
-  border: 0.15em solid #f7a194;
-  border-radius: 0.15em;
-  transform: translateY(-0.075em);
-	display: grid;
-  place-content: center;
-	&::before {
-		content: "";
-		width: 0.5em;
-		height: 0.5em;
-		transform: scale(0);
-		transition: 120ms transform ease-in-out;
-		box-shadow: inset 1em 1em #f7a194;
-		background-color: CanvasText;
-		clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-		transform-origin: left top;
-	}
-	&:checked::before {
-		transform: scale(1);
-	}
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1em;
+    height: 1em;
+    border: 0.15em solid #f7a194;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+
+    &::before {
+        content: "";
+        width: 0.5em;
+        height: 0.5em;
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+        box-shadow: inset 1em 1em #f7a194;
+        background-color: CanvasText;
+        clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        transform-origin: left top;
+    }
+
+    &:checked::before {
+        transform: scale(1);
+    }
 }
 
 /* On small
