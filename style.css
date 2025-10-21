@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Roboto+Slab:wght@400;700&display=swap');
 
+/* ========================================================================== */
+/* =============== BASE STYLES ============================================== */
+/* ========================================================================== */
+
 body {
   background-color: #f4f4f5;
   margin: 0%;
@@ -7,6 +11,14 @@ body {
   font-family: 'Inter', sans-serif;
   color: #272536;
 }
+
+a {
+  color: #B33951;
+}
+
+/* ========================================================================== */
+/* =============== HEADER & FOOTER ========================================== */
+/* ========================================================================== */
 
 .header {
   background-color: #ffffff;
@@ -19,28 +31,14 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
-.footnotes {
-  display: flex;
-  width: 100%;
-  height: 50px;
-  text-align: center;
-  vertical-align: middle;
-  justify-content: center;
-  align-items: center;
-  margin-top: auto;
-  background-color: #272536;
-  color: #F8F1FF;
-  font-size: 14px;
-}
-
 .logobox {
   font-family: 'Roboto Slab', serif;
   box-sizing: border-box;
   display: inline-block;
   font-size: 20px;
   line-height: 50px;
-  margin: 0px;
-  padding: 0px 20px;
+  margin: 0;
+  padding: 0 20px;
   text-align: center;
   vertical-align: middle;
   color: #333;
@@ -57,6 +55,45 @@ body {
   transition: transform 0.2s;
 }
 
+.footnotes {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  background-color: #272536;
+  color: #F8F1FF;
+  font-size: 14px;
+}
+
+/* ========================================================================== */
+/* =============== COMMON COMPONENTS ======================================== */
+/* ========================================================================== */
+
+.basic-button {
+  color: #17171d;
+  transition: transform 0.2s;
+}
+
+.basic-button:hover {
+  filter: invert(29%) sepia(99%) saturate(580%) hue-rotate(303deg) brightness(89%) contrast(97%);
+  transform: scale(1.1);
+}
+
+/* Header links use black text */
+.header .basic-button,
+.logobox a {
+  color: #000;
+  -webkit-text-fill-color: #000;
+}
+
+/* ========================================================================== */
+/* =============== STRUCTURE & LAYOUT ======================================= */
+/* ========================================================================== */
+
 .homebox {
   width: auto;
   height: fit-content;
@@ -65,13 +102,23 @@ body {
   text-align: center;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 50px 0px;
+  padding: 50px 0;
 }
 
 .projectbox {
   background: linear-gradient(to bottom, #17171d 0%, #272536 15%, #272536 85%, #17171d);
   padding: 0;
+  position: relative;
+  overflow: hidden;
+  height: 475px; /* target height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+/* ========================================================================== */
+/* =============== TEXT ELEMENTS ============================================ */
+/* ========================================================================== */
 
 .title {
   font-family: 'Roboto Slab', serif;
@@ -97,9 +144,20 @@ body {
 .introtext {
   text-align: justify;
   font-size: 19px;
-  padding: 0px 15px 0px 0px;
+  padding: 0 15px 0 0;
   font-family: 'Inter', sans-serif;
   color: #444;
+}
+
+/* ========================================================================== */
+/* =============== MEDIA CONTENT ============================================ */
+/* ========================================================================== */
+
+.projectheader {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin-top: 50px;
 }
 
 .projectmedia {
@@ -131,6 +189,10 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+/* ========================================================================== */
+/* =============== INTRO SECTION ============================================ */
+/* ========================================================================== */
+
 .introcontent {
   width: 950px;
   height: 100%;
@@ -149,7 +211,7 @@ body {
 
 #introimg {
   vertical-align: top;
-  margin-right: 0px;
+  margin-right: 0;
   width: 400px;
   height: 350px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -157,10 +219,14 @@ body {
 }
 
 #introtextbox {
-  margin: 0px;
+  margin: 0;
   display: inline-block;
   vertical-align: top;
 }
+
+/* ========================================================================== */
+/* =============== PREVIEW CARDS ============================================ */
+/* ========================================================================== */
 
 .previews-wrapper {
   white-space: nowrap;
@@ -218,17 +284,7 @@ body {
   border-radius: 10px;
 }
 
-.card.shrunk {
-  opacity: 0.14;
-  pointer-events: none;
-  filter: blur(0.2px);
-  transition: opacity 0.35s ease;
-}
-
-.card.expanded-preview-hidden .overlay,
-.card.expanded-preview-hidden .preview-img {
-  visibility: hidden;
-}
+/* Cards */
 
 .card {
   position: relative;
@@ -261,6 +317,22 @@ body {
   transition: width 0.45s cubic-bezier(.2,.9,.2,1), transform 0.35s ease;
 }
 
+.card.shrunk {
+  opacity: 0.14;
+  pointer-events: none;
+  filter: blur(0.2px);
+  transition: opacity 0.35s ease;
+}
+
+.card.expanded-preview-hidden .overlay,
+.card.expanded-preview-hidden .preview-img {
+  visibility: hidden;
+}
+
+/* ========================================================================== */
+/* =============== FILES SECTION ============================================ */
+/* ========================================================================== */
+
 .filesdiv {
   background: linear-gradient(to bottom, #d3d3d3, #f4f4f5 30%, #f4f4f5 70%, #d3d3d3);
   width: 100%;
@@ -290,6 +362,10 @@ body {
   transform: scale(1.05);
 }
 
+/* ========================================================================== */
+/* =============== FORM ELEMENTS ============================================ */
+/* ========================================================================== */
+
 .stylized-input {
   text-align: left;
   margin: 10px auto;
@@ -309,6 +385,10 @@ body {
   margin: 0 12.5%;
 }
 
+/* ========================================================================== */
+/* =============== TABLE STYLES ============================================= */
+/* ========================================================================== */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -325,31 +405,9 @@ tr:last-child td {
   border-bottom: transparent;
 }
 
-a {
-  color: #B33951;
-}
-
-.basic-button {
-  color: #17171d;
-  transition: transform 0.2s;
-}
-
-.basic-button:hover {
-  filter: invert(29%) sepia(99%) saturate(580%) hue-rotate(303deg) brightness(89%) contrast(97%);
-  transform: scale(1.1);
-}
-
-/* only header links use black text */
-.header .basic-button,
-.logobox a {
-  color: #000;
-  -webkit-text-fill-color: #000;
-}
-
-.projectheader {
-  height: 450px;
-  margin-top: 50px;
-}
+/* ========================================================================== */
+/* =============== PARALLAX ================================================= */
+/* ========================================================================== */
 
 .parallax {
   transform: translateY(0px);
@@ -357,7 +415,10 @@ a {
   will-change: transform;
 }
 
-/* ===== PROJECT SECTION STYLES ===== */
+/* ========================================================================== */
+/* =============== PROJECT SECTION STYLES =================================== */
+/* ========================================================================== */
+
 .project-section {
   display: flex;
   align-items: center;
@@ -491,6 +552,14 @@ a {
   color: #ffffff;
 }
 
+.project-section .actions .view-more-button:hover {
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  background-color: #B33951;
+  filter: none;
+  transform: scale(1.05);
+}
+
 .project-section .filesdiv {
   background: linear-gradient(to bottom, #d3d3d3, #f4f4f5 30%, #f4f4f5 70%, #d3d3d3);
   width: auto;
@@ -504,6 +573,46 @@ a {
 .project-section.background .filesdiv {
   background: linear-gradient(to bottom, #1a1a22, #2a2840 30%, #2a2840 70%, #1a1a22);
 }
+
+/* ========================================================================== */
+/* =============== ALTERNATIVE WHITE VERSION ================================ */
+/* ========================================================================== */
+
+.basic-button.white {
+  color: #000000;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s;
+}
+
+.basic-button.white:hover {
+  filter: invert(29%) sepia(99%) saturate(580%) hue-rotate(303deg) brightness(89%) contrast(97%);
+  transform: scale(1.1);
+}
+
+.project-section .actions .view-more-button.white {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #ffffff;
+  color: #000000;
+  filter: brightness(1) invert(0);
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.project-section .actions .view-more-button.white:hover {
+  background-color: #B33951;
+  color: #ffffff;
+  border-color: #B33951;
+  filter: none;
+  transform: scale(1.05);
+}
+
+/* ========================================================================== */
+/* =============== MEDIA QUERIES ============================================ */
+/* ========================================================================== */
 
 @media screen and (max-width: 900px) {
   .project-section {
@@ -572,66 +681,3 @@ a {
     text-align: center;
   }
 }
-
-.project-section .actions .view-more-button:hover {
-  color: #ffffff;
-  -webkit-text-fill-color: #ffffff;
-  background-color: #B33951; /* ✅ your pink accent color */
-  filter: none;
-  transform: scale(1.05);
-}
-
-/* === ALTERNATIVE WHITE VERSION === */
-
-/* Basic white button (normal background: white, text: black) */
-.basic-button.white {
-  color: #000000;
-  filter: brightness(0) invert(1);
-  transition: transform 0.2s;
-}
-
-.basic-button.white:hover {
-  filter: invert(29%) sepia(99%) saturate(580%) hue-rotate(303deg) brightness(89%) contrast(97%);
-  transform: scale(1.1);
-}
-
-/* "View More" white variant (same style logic) */
-.project-section .actions .view-more-button.white {
-  display: inline-block;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  background-color: #ffffff;
-  color: #000000;
-  filter: brightness(1) invert(0);
-  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-}
-
-/* Hover effect: pink background, white text */
-.project-section .actions .view-more-button.white:hover {
-  background-color: #B33951;
-  color: #ffffff;
-  border-color: #B33951;
-  filter: none;
-  transform: scale(1.05);
-}
-
-.projectbox {
-  position: relative;
-  overflow: hidden; /* ensures the image never escapes bounds */
-  height: 475px; /* your target height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.projectheader {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  margin-top: 50px; /* keep your spacing under the header */
-}
-
-
