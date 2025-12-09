@@ -10,6 +10,9 @@ body {
   position: static;
   font-family: 'Inter', sans-serif;
   color: #272536;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 a {
@@ -75,6 +78,7 @@ a {
   background-color: #272536;
   color: #F8F1FF;
   font-size: 14px;
+  margin-top: auto;
 }
 
 /* ========================================================================== */
@@ -1033,14 +1037,16 @@ tr:last-child td {
 
 /* Contact Hero Section */
 .contact-hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 120px 8% 48px;
-  min-height: 250px;
   background: linear-gradient(to bottom, #1a1a22 0%, #2a2840 20%);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   text-align: center;
+  flex: 1;
+  padding: 64px 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .contact-hero-content {
@@ -1063,9 +1069,12 @@ tr:last-child td {
 
 /* Contact Sections */
 .contact-section {
+  flex: 1;
   padding: 64px 8%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .contact-section.foreground {
@@ -1098,11 +1107,16 @@ tr:last-child td {
   color: #ffffff;
 }
 
-/* Contact Grid */
 .contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 32px;
+  justify-content: center;
+}
+
+.contact-grid > * {
+  flex: 1 1 280px;
+  max-width: 100%;
 }
 
 .contact-card {
