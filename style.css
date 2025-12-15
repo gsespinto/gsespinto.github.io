@@ -496,6 +496,16 @@ tr:last-child td {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
+.project-section .media .project-cover {
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
 .project-section .content h1,
 .project-section .content h2 {
   font-family: 'Roboto Slab', serif;
